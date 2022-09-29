@@ -5,6 +5,8 @@
  * 1. Introduction to Java helpful.
  */
 
+import java.util.ArrayList;
+
 public abstract class Bag {
     /*
      * TODO: Create the following private instance variables
@@ -13,7 +15,10 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
-
+    private String color;
+    private int numberOfContents;
+    int capacity;
+    private ArrayList<String> contents;
 
 
 
@@ -27,7 +32,12 @@ public abstract class Bag {
      * its contents.)
      */
 
-
+    public Bag(String color, int capacity){
+        this.color = color;
+        this.numberOfContents = 0;
+        this.capacity = capacity;
+        this.contents = new ArrayList<>();
+    }
 
 
     /*
@@ -37,8 +47,17 @@ public abstract class Bag {
      *           - getNumberOfContents
      *           - getCapacity
      */
+    public String getColor(){
+        return this.color;
+    }
 
+    public int getNumberOfContents(){
+        return this.numberOfContents;
+    }
 
+    public int getCapacity(){
+        return this.capacity;
+    }
 
 
     /*
@@ -46,7 +65,9 @@ public abstract class Bag {
      *       color of this bag to the given color.
      */
 
-
+    public void setColor(String given_color){
+        this.color = given_color;
+    }
 
 
 
@@ -61,7 +82,15 @@ public abstract class Bag {
      *       and false otherwise.
      */
 
-
+    public boolean addItem(String item){
+        if (numberOfContents < capacity){
+            this.contents.add(item);
+            numberOfContents ++;
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 
 
@@ -75,7 +104,14 @@ public abstract class Bag {
      *
      * @return
      */
-
+    public String popItem(){
+        if (this.numberOfContents != 0){
+            numberOfContents --;
+            return this.contents.remove(numberOfContents);
+        }else{
+            return null;
+        }
+    }
 
 
 
@@ -87,7 +123,7 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
-
+        this.capacity += n;
     }
 
     /**
